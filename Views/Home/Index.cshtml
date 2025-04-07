@@ -1,0 +1,532 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+
+<style>
+	div.table-container.top-products-table-container {
+	}
+
+		div.table-container.top-products-table-container div.table.top-products-table {
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+		}
+
+	@@media (max-width:1400px) {
+		div .table-container.top-products-table-container div.table.top-products-table {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@@media (max-width:760px) {
+		div .table-container.top-products-table-container div.table.top-products-table {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	div.table-container.top-products-table-container div.table.top-products-table div.row {
+	}
+
+		div.table-container.top-products-table-container div.table.top-products-table div.row div.element {
+		}
+
+			div.table-container.top-products-table-container div.table.top-products-table div.row div.element.image {
+			}
+
+				div.table-container.top-products-table-container div.table.top-products-table div.row div.element.image img {
+				}
+
+
+
+	div.quote.table-container {
+	}
+
+		div.quote.table-container div.table {
+			grid-template-columns: 1fr 320px;
+		}
+
+	@@media (max-width:1400px) {
+		div .quote.table-container div.table {
+			grid-template-columns: 1fr 240px;
+		}
+	}
+
+	@@media (max-width:760px) {
+		div .quote.table-container div.table {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	div.quote.table-container div.table div.row {
+	}
+
+		div.quote.table-container div.table div.row div.element {
+			font-size: 32px;
+		}
+
+	@@media (max-width:760px) {
+		div .quote.table-container div.table div.row div.element {
+			font-size: 24px;
+		}
+	}
+
+	div.quote.table-container div.table div.row div.element.image {
+	}
+
+		div.quote.table-container div.table div.row div.element.image img {
+		}
+
+	.author {
+		font-style: italic;
+		font-size: 24px;
+	}
+
+	/*.top-products {
+			}
+
+			.top-products .table {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap:2rem 4rem;
+
+				justify-content: center;
+				text-align: center;
+				align-items: center;
+				place-items: center;
+				align-self: center;
+				justify-self: center;
+
+				max-width: 720px;
+			}
+
+		@@media (max-width: 720px) {
+			.top-products .table
+
+		{
+			display: flex;
+			flex-direction: column;
+			gap: 2rem 4rem;
+		}
+
+		}
+
+
+		.top-products .table .product-name {
+			color: white;
+			font-family: 'Times New Roman', Times, serif;
+			font-size: xx-large;
+			text-shadow: 2px 2px 4px black, 2px 2xp 20px black;
+			width: 100%;
+			max-width: 320px;
+			padding: 10px;
+		}
+
+		.top-products .table .product-image {
+			background-color: white;
+			width: 100%;
+			max-width: 320px;
+			padding: 10px;
+			margin: 10px;
+			box-shadow: 5px 5px 0px black;
+		}
+
+			.top-products .table .product-image img {
+				width: 100%;
+			}
+
+		*/
+
+
+	.quotes .header {
+		color: white;
+		font-size: 72px;
+		font-family: 'Times New Roman', Times, serif;
+		text-align: center;
+		font-weight: bold;
+	}
+
+		.quotes .header p {
+			margin-top: 0;
+		}
+
+	.quotes .quote {
+		display: grid;
+		grid-template-columns: 3fr 160px;
+		align-items: stretch;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+		.quotes .quote .text {
+			width: 95%;
+			padding: 0;
+			margin: 0;
+		}
+
+	@@media (max-width: 1024px) {
+		.quotes .quote {
+			display: flex;
+			flex-direction: column;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+
+			.quotes .quote .text {
+				margin: 0;
+				padding: 10px
+			}
+	}
+
+	.attention .content {
+		display: flex;
+		flex-direction: column;
+		max-width: 1200px;
+		color: white;
+		font-size: 24px;
+		font-family: 'Times New Roman', Times, serif;
+		font-weight: light;
+		line-height: 1.5em;
+	}
+
+		.attention .content .item {
+		}
+
+	/*What a pain in the ...*/
+
+	.quote .text {
+		align-self: flex-start;
+		color: white;
+		font-size: 24px;
+		font-weight: bold;
+		font-family: 'Times New Roman', Times, serif;
+		text-align: justify;
+		width: 95%;
+		margin: 25px;
+		float: left;
+	}
+
+	.quote .author-container {
+		color: white;
+		/* line-height:0; */
+		font-size: 18px;
+		font-family: 'Times New Roman', Times, serif;
+		display: flex;
+		width: 90%;
+		min-height: 100%;
+		align-self: center;
+		justify-content: center;
+		align-items: center;
+	}
+
+		.quote .author-container .author {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: right;
+			margin: 0;
+			font-style: italic;
+		}
+
+			.quote .author-container .author p {
+				margin: 0;
+				text-align: center;
+			}
+</style>
+
+<div class="page-header">
+
+	<div class="flag-banner"></div>
+
+	<div class="content">
+		<div class="title-image-container">
+			<div class="title-container" id="image-postload-OldGlory">
+				<script>
+					document.addEventListener("DOMContentLoaded", () => {
+						setTimeout(() => {
+							document.getElementById("image-postload-OldGlory").style.backgroundImage = `url("/assets/OldGlory.webp")`;
+						}, 1000);
+					});
+				</script>
+				<div class="image">
+				</div>
+				<div class="subtitle">
+				</div>
+			</div>
+		</div>
+
+		<br />
+		<div class="aboutus">
+			<p>
+				From the <span class="text-strong text-highlight">
+					Gulf of America to the Glaciers of
+					Alaska
+				</span>, we have all the firearms you and your
+				family will ever need.
+				We are a <span class="text-strong text-highlight">
+					Federally Licensed Firearm
+					Dealer
+				</span>
+				Dedicated to selling only the Finest Firearms
+				available to the consumer. We also cater to those who look for the hard to find Relics
+				such
+				as <span class="text-strong text-highlight">
+					Original Bayonets, Slings, Muzzle Covers,
+					Stocks
+					and more.
+				</span> Also, we offer new firearms a
+				discount prices! Why buy Retail and pay MSRP? With Moore's C&R Pricing Policy you will
+				<span class="text-strong text-highlight">realize the savings right away.</span> We carry
+				everything from modern <span class="text-strong text-highlight">
+					Semi-Auto Pistols to
+					flint
+					lock relics.
+				</span> We DO ship to California, but only if the firearm is on the CA
+				DOJ
+				list of
+				approved firearms, or if the C&R age is actually more than 50 years. <span>
+					class="text-strong text-highlight">All C&R
+					handguns MUST ship to a CA 01 FFL.
+				</span>
+			</p>
+			<p>
+				Can't find what you want in your location? We have access hundreds of firearms, all
+				major
+				brands. From Bersa to Smith & Wesson, Weatherby to Mossberg, Taurus to Steyr, Beretta
+				Kel-Tec. Mosin Nagants to Mausers, K31s to M48s, Chilean to Romanian, we have access to
+				almost everything.
+			</p>
+		</div>
+	</div>
+
+	<div class="flag-banner"></div>
+
+</div>
+
+
+<div class="page-seperator">
+</div>
+
+<div class="attention">
+	<div class="title">
+		<p>Attention!</p>
+	</div>
+
+	<div class="content" style="list-style-type: none;">
+		<div class="item">
+			<p class="text-strong text-red text-highlight">
+				Due to the incredible demand, availability,
+				and sudden price changes from our distributors, please email us for PRICE QUOTES for
+				items you are interested in.
+			</p>
+		</div>
+		<div class="item">
+			<p>
+				<span class="text-strong text-yellow text-highlight text-underline">
+					NO SALES TO NEW
+					YORK!
+				</span> <span class="text-red text-italics">
+					Sorry, we have no idea how to
+					interpret the new Commissar Cumo Laws, we are not even going to attempt.
+				</span>
+			</p>
+		</div>
+		<div class="item">
+			<p>
+				We Do Ship to California! ONLY CADOJ APPROVED ITEMS! We are TRYING to obtain some CA
+				Approved AKs and pistols right now - Stay Tuned.
+			</p>
+		</div>
+		<div class="item">
+			<p>
+				Shipping delays right now range from two days in some cases to 6 weeks, thank you for
+				your patience.
+			</p>
+		</div>
+		<div class="item">
+			<p>Below is what either WE HAVE, or WE CAN GET</p>
+		</div>
+		<div class="item">
+			<p>WE HAVE AK-47s, Some in stock, most on backorder*.</p>
+		</div>
+		<div class="item">
+			<p>WE HAVE Zastava Firearms, Some in stock, most on backorder.*</p>
+		</div>
+		<div class="item">
+			<p class="text-highlight">
+				We still have a few C&R Items (24/47, Swiss 1911, Swiss 96/11,
+				Mosin Nagants, Mosin Nagant Reproduction Snipers)
+			</p>
+		</div>
+		<div class="item">
+			<p>
+				ALL ARs ARE GONE, We have NO lowers, uppers, sides, or bottoms, we don't know when we
+				will be able to get any more in stock, it may be several months before we can stock
+				anything again.
+			</p>
+		</div>
+	</div>
+
+</div>
+
+<div class="page-seperator"></div>
+
+<div class="table-container top-products-table-container">
+	<div class="title">
+		<p>Best Sellers</p>
+	</div>
+	<div class="table top-products-table">
+		<div class="row">
+			<div class="element">SAM 1911</div>
+			<div class="element image">
+				<img src="/assets/gun-images/sam1911.jpg" alt="SAM 1911" />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="element"><a href="https://arcus.bg/">Arcus Bulgarian Pistols</a></div>
+			<div class="element image">
+				<img src="/assets/gun-images/arcus9mm.jpg" alt="Arcus Bulgarian Pistols" />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="element">
+				<a href="https://kalashnikov.market/articles/brand/izhmash">
+					Saiga
+					HI-CAP Semi-Auto Cal. 5.45x39mm
+				</a>
+			</div>
+			<div class="element image">
+				<img src="/assets/gun-images/Saiga%20HI-CAP.jpg"
+					 alt="Saiga HI-CAP Semi-Auto Cal. 5.45x39mm" />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="element">
+				<a href="https://www.zastava-arms.rs/en/home/">Zastava PAP AKs</a>
+			</div>
+			<div class="element image">
+				<img src="/assets/gun-images/72L_RI2063-N%20PAP%20M77.jpg" alt="Zastava PAP AKs" />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="element">GP WASR-10 (Century International)</div>
+			<div class="element image">
+				<img src="/assets/gun-images/GP%20WARS-10.jpg"
+					 alt="GP WASR-10 (Century International)" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<br />
+
+<div class="page-seperator"></div>
+
+<div class="table-container quote">
+	<div class="title">
+		<p>Quotes</p>
+	</div>
+	<div class="table">
+		<div class="row">
+			<div class="element">
+				<p>
+					You won't get gun control by disarming law-abiding citizens. There's only one way to
+					get
+					real gun control: Disarm the thugs and the criminals, lock them up and if you don't
+					actually throw away the key, at least lose it for a long time... It's a nasty truth,
+					but
+					those who seek to inflict harm are not fazed by gun controllers. I happen to know
+					this
+					from personal experience.
+				</p>
+			</div>
+			<div class="element">
+				<div class="author">
+					<p>Ronald Reagan</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>
+					Democracy is two wolves and a lamb voting on lunch. Liberty is a well-armed lamb
+					denying
+					enforcement of the vote.
+				</p>
+			</div>
+			<div class="element">
+				<div class="author">
+					<p>Benjamin Franklin</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>
+					A free people ought not only be armed and disciplined, but they should have
+					sufficient
+					arms and ammunition to maintain a status of Independence from any who might attempt
+					to
+					abuse them, which would include their own government.
+				</p>
+			</div>
+			<div class="element">
+				<div class="author">
+					<p>George Washington</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>He that hath no sword, let him sell his garment, and buy one.</p>
+			</div>
+			<div class="element">
+				<div class="author">
+					<p>Jesus Christ,</p>
+					<p>Our Lord and Savior, Luke 22:36</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>
+					The strongest reason for the people to retain the right to keep and bear arms is, as
+					a
+					last resort, to protect themselves against tyranny in government.
+				</p>
+			</div>
+			<div class="element">
+				<div class="author">
+					<p>Thomas Jefferson</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>
+					Firearm Safety is paramount, always remember, never point a loaded firearm in the
+					direction of anyone (unless they are a Hippy or a Commie Pink-O Communist).
+				</p>
+			</div>
+			<div class="element">
+				<div class="author">
+					<p>Denton L. L. Moore, </p>
+					<p>Founder and President</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>Remember, Cars don't kill, bad drivers do.</p>
+			</div>
+			<div class="element">
+				<div class="author">
+					<p>Common Sense</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

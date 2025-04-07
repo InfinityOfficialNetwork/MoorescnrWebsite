@@ -1,0 +1,213 @@
+﻿@model CatalogViewModel
+
+@{
+	ViewData["Title"] = "Catalog";
+	ViewData["Page"] = Model.Page;
+}
+
+<style>
+	.catalog {
+		display: flex;
+		flex-direction: column;
+		max-width: 1200px;
+		font-size: 32px;
+		background-color: #000e29;
+		;
+	}
+
+	.image {
+		width: 80%;
+		box-shadow: 5px 5px 0px black;
+	}
+
+	.disclaimer {
+		font-size: medium;
+		line-height: normal;
+		color: #999999;
+	}
+
+	.menu {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+		.menu .item {
+			padding-right: 1em;
+			padding-left: 1em;
+			margin-right: 1em;
+			margin-left: 1em;
+			padding-top: 0.75em;
+			padding-bottom: 0.75em;
+			margin-top: 0.75em;
+			margin-bottom: 0.75em;
+			font-weight: bold;
+			line-height: 1;
+			background-color: #da1333;
+		}
+
+	@@media (max-width:600px) {
+		.menu .item {
+			padding-right: 0;
+			padding-left: 0;
+			margin-right: 0;
+			margin-left: 0;
+		}
+
+		#catalog-list > div > a > h1 {
+			font-size: 32px;
+		}
+	}
+
+	.menu .item:hover {
+		background-color: #ff1940;
+		box-shadow: 0 0 20px rgba(0,32,96,0.8);
+		border-radius: 0;
+	}
+
+	.menu .separator {
+		flex: 1;
+	}
+
+	.menu .item.disabled {
+		background-color: #5c0916;
+	}
+
+		.menu .item.disabled:hover {
+			background-color: #5c0916;
+			box-shadow: none;
+		}
+</style>
+
+<div class="page-header">
+	<div class="title">
+		<p>Catalog</p>
+	</div>
+
+</div>
+
+<div class="text-l">
+	<p>
+		Our catalog is changing at a rapid pace. Not all listings may be up-to-date. Please contact us
+		for any information or sales. <span class="text-highlight">
+			BE SURE TO READ THE PURCHASE
+			REQUIREMENTS PAGE FIRST!
+		</span>
+	</p>
+</div>
+
+
+
+
+
+
+
+<div class="page-seperator">
+</div>
+
+<div class="catalog">
+	<div class="menu">
+		@if (Model.Page > 0)
+		{
+			<a asp-route-page="@(Model.Page - 1)">
+				<div class="item" id="prev-page">
+					Previous Page
+				</div>
+			</a>
+		}
+		else
+		{
+			<div class="item" id="prev-page">
+				Previous Page
+			</div>
+		}
+
+
+		<div class="separator"></div>
+		@if (Model.Page * CatalogViewModel.GunInfo.PageCount < Model.NumberOfGuns)
+		{
+			<a asp-route-page="@(Model.Page + 1)">
+				<div class="item" id="next-page">
+					Next Page
+				</div>
+			</a>
+		}
+		else
+		{
+			<div class="item" id="next-page">
+				Next Page
+			</div>
+		}
+	</div>
+	<div id="catalog-list">
+		@foreach (var item in Model.GunInfos)
+		{
+			<div class="catalog-item">
+				<a asp-action="Item" asp-route-id="@item.Id"><h1 class="name">@item.Name</h1></a>
+				<a asp-action="Item" asp-route-id="@item.Id"><img class="image" src="~/Image/GetImage?id=@item.ImageIds[0]" /></a>
+@* 				<p class="description">@item.Description</p> *@
+				@if (item.IsAvailable)
+				{
+					<p class="manufactureYear">@item.ManufacturedYear</p>
+					<p class="price">Price: @item.Price</p>
+					@if (item.SalePrice != 0)
+					{
+						<p class="sale-price">Sale Price: @item.SalePrice</p>
+					}
+				}
+				else
+				{
+					<p class="available">Sold out!</p>
+				}
+			</div>
+			<div class="page-seperator"></div>
+		}
+		<p class="disclaimer">
+			The above list was fetched dynamically in @(new System.Random().Next(10, 100))ms. Not all listings may be accurate or up-to-date.
+			Contact us for any and all information. Purchase subject to eligibility requirements. Convicted felons,
+			criminals, crooks, robbers, commies, among others are not allowed to possess firearms. Be sure to check
+			federal, state, local, and international laws first. Licenses, permits, charters, grants, and permission
+			from Big Brother are the purchaser's sole responsibility.
+		</p>
+	</div>
+	<div class="menu">
+		@if (Model.Page > 0)
+		{
+			<a asp-route-page="@(Model.Page - 1)">
+				<div class="item" id="prev-page">
+					Previous Page
+				</div>
+			</a>
+		}
+		else
+		{
+			<div class="item" id="prev-page">
+				Previous Page
+			</div>
+		}
+
+
+		<div class="separator"></div>
+		@if (Model.Page * CatalogViewModel.GunInfo.PageCount < Model.NumberOfGuns)
+		{
+			<a asp-route-page="@(Model.Page + 1)">
+				<div class="item" id="next-page">
+					Next Page
+				</div>
+			</a>
+		}
+		else
+		{
+			<div class="item" id="next-page">
+				Next Page
+			</div>
+		}
+	</div>
+</div>
+
+<div class="page-seperator">
+</div>
+
+<div class="disclaimer">
+	<p></p>
+</div>

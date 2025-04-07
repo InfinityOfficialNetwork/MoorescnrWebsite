@@ -1,0 +1,136 @@
+﻿@model CatalogViewModel
+
+@{
+	ViewData["Title"] = "Item";
+}
+
+<style>
+	.catalog {
+	display: flex;
+	flex-direction: column;
+	max-width: 1200px;
+	font-size: 32px;
+	line-height: 1.5em;
+	}
+
+	.image {
+	max-height: 320px;
+	width: auto;
+	max-width: 80%;
+	box-shadow: 5px 5px 0px black;
+	}
+
+	.small-image {
+	width: 100%;
+	height: auto;
+	}
+
+	.single-image-container {
+	height: 100%;
+	width: 100%;
+	align-content: center;
+	background-color: #FFF;
+	line-height: 0;
+	box-shadow: 5px 5px 0px black;
+	}
+
+	.disclaimer {
+	font-size: medium;
+	line-height: normal;
+	color: #999999;
+	}
+
+	.image-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 12px;
+	align-items: center;
+	}
+
+	@@media (max-width:1200px) {
+	.image-container {
+	grid-template-columns: 1fr 1fr;
+	}
+	}
+
+	@@media (max-width:720px) {
+	.image-container {
+	grid-template-columns: 1fr;
+	}
+	}
+</style>
+
+<div class="page-header">
+	<div class="title" id="page-title">
+		<p>Catalog Item</p>
+	</div>
+
+</div>
+
+<div class="text-l">
+	<p>
+		Our catalog is changing at a rapid pace. Not all listings may be up-to-date. Please contact us
+		for any information or sales. <span class="text-highlight">
+			BE SURE TO READ THE PURCHASE
+			REQUIREMENTS PAGE FIRST!
+		</span>
+	</p>
+</div>
+
+
+
+
+
+
+
+<div class="page-seperator">
+</div>
+
+<div class="catalog">
+	<div id="catalog-list">
+		@foreach (var item in Model.GunInfos.Take(1))
+		{
+			<div>
+				<h1 class="name">@item.Name</h1>
+				<img class="image" src="~/Image/GetImage?id=@(item.ImageIds[0])">
+				<p class="description">@item.Description</p>
+				@if (item.IsAvailable)
+				{
+					<p class="available">Available</p>
+					@if (item.ManufacturedYear != 0)
+					{
+						<p class="manufactureYear">Manufactured in @item.ManufacturedYear</p>
+					}
+					<p class="price">Price: @item.Price</p>
+
+					@if (item.SalePrice != 0)
+					{
+						<p class="sale-price">Sale price: @item.SalePrice</p>
+					}
+				}
+
+				<div class="image-container">
+					@foreach (var image in item.ImageIds)
+					{
+						<div class="single-image-container">
+							<img src="~/Image/GetImage?id=@(image)" class="small-image">
+						</div>
+					}
+				</div>
+
+			</div>
+			<div class="page-seperator"></div>
+		}
+
+		<p class="disclaimer">The above list was fetched dynamically in -204ms. Not all listings may be accurate or up-to-date. Contact us for any and all information. Purchase subject to eligibility requirements. Convicted felons, criminals, crooks, robbers, commies, among others are not allowed to possess firearms. Be sure to check federal, state, local, and international laws first. Licenses, permits, charters, grants, and permission from Big Brother are the purchaser's sole responsibility.</p>
+	</div>
+
+
+</div>
+
+<div class="page-seperator">
+</div>
+
+<div class="disclaimer">
+	<p></p>
+</div>
