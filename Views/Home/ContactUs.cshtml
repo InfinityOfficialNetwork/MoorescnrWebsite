@@ -1,0 +1,96 @@
+﻿@{
+	ViewData["Title"] = "Contact Us";
+}
+
+<style>
+	div.table-container div.table.contactus-table {
+		max-width: 960px;
+		gap: .5rem .5rem;
+	}
+
+		div.table-container div.table.contactus-table div.row div.element {
+			padding: 0;
+		}
+
+	@@media (max-width:760px) {
+		div .table-container div.table.contactus-table {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	div.table-container div.table.contactus-table div.row div.element :link {
+		color: red;
+	}
+
+	div.table-container div.table.contactus-table div.row div.element :visited {
+		color: red;
+	}
+</style>
+
+<div class="page-header">
+	<div class="title">
+		<p>Contact Us</p>
+	</div>
+
+</div>
+
+<div class="text-l">
+	<p>
+		We are happy to do buisness with you (as long as you are not a commie or a hippie). For any questions, please contact us at:
+	</p>
+</div>
+
+<div class="table-container">
+	<div class="table contactus-table">
+		<div class="row">
+			<div class="element">
+				<p>Sales related questions</p>
+			</div>
+			<div class="element">
+				<p>
+					<a href="mailto:sales@moorescnr.com">Sales@moorescnr.com</a>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>Order information (please include order number)</p>
+			</div>
+			<div class="element">
+				<p>
+					<a href="mailto:Orders@moorescnr.com">Orders@moorescnr.com</a>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>Tracking ans Shipping information</p>
+			</div>
+			<div class="element">
+				<p>
+					<a href="mailto:Shipping@moorescnr.com">Shipping@moorescnr.com</a>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>For all other questions</p>
+			</div>
+			<div class="element">
+				<p>
+					<a href="mailto:Info@moorescnr.com">Info@moorescnr.com</a>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="element">
+				<p>25/8 Fax</p>
+			</div>
+			<div class="element">
+				<p>
+					<a href="tel:888-562-0759">888-562-0759</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

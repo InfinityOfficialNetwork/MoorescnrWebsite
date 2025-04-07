@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>@ViewData["Title"]</title>
+	<link rel="stylesheet" type="text/css" href="~/css/global.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta charset="UTF-8">
+	<meta name="description"
+		  content="Moore's C&R - We are a Federally Licensed Firearm Dealer Dedicated to selling only the Finest Firearms available to the consumer.">
+	<meta name="keywords"
+		  content="firearms, guns, C&R firearms, collectible guns, AK-47, Zastava, Smith & Wesson, gun accessories, historical firearms, licensed firearm dealer, best gun deals">
+	<meta name="author" content="Moore's C&R">
+</head>
+
+<body>
+	<div class="root">
+		<div class="nav">
+			<!--the audio was made in the 30's, so no more copyright-->
+			<audio id="GodBlessAmerica" autoplay loop>
+				<source src="/assets/God_bless_America.mp3" type="audio/mpeg">
+			</audio>
+			<script>
+				const music = document.getElementById("GodBlessAmerica");
+				const add_listners = (i) => {
+					document.addEventListener(i, function () {
+						setTimeout(() => { document.getElementById("GodBlessAmerica").play().catch(() => { add_listners(i) }); }, 50);
+					}, { once: true });//so it wont spam
+				}
+
+				//because browsers are dumb, they block autoplay music unless a user interacts with the page
+				//but any interaction counts, even moving the mouse after the page is loaded...
+				['scroll', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'abort',
+					'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload',
+					'blur', 'canplay', 'canplaythrough', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag',
+					'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'durationchange', 'ended', 'error',
+					'focus', 'focusin', 'focusout', 'fullscreenchange', 'fullscreenerror', 'hashchange', 'input', 'invalid',
+					'keydown', 'keypress', 'keyup', 'load', 'loadeddata', 'loadedmetadata', 'loadstart', 'message', 'mousedown', 'offline', 'online',
+					'open', 'pagehide', 'pageshow', 'paste', 'pause', 'play', 'playing', 'popstate', 'progress', 'ratechange',
+					'resize', 'reset', 'search', 'seeked', 'seeking', 'select', 'show', 'stalled', 'storage', 'submit',
+					'suspend', 'timeupdate', 'toggle', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitionend',
+					'volumechange', 'waiting', 'wheel'].forEach(add_listners);
+			</script>
+			<div class="list">
+				<div class="element">
+					<img class="title" src="/assets/logo-red.svg" style="width:auto;height:100px;"
+						 alt />
+				</div>
+				<div class="element"><span class="bar"></span></div>
+				<div class="element-container">
+					<div class="element"><a class="link" asp-controller="Home" asp-action="Index">Home</a></div>
+					<div class="element"><a class="link" asp-controller="Home" asp-action="Catalog">Catalog</a></div>
+					<div class="element"><a class="link" asp-controller="Home" asp-action="PurchaseRequirements">Purchase Requirements</a></div>
+					<div class="element"><a class="link" asp-controller="Home" asp-action="ContactUs">Contact Us</a></div>
+					<div class="element"><a class="link" asp-controller="Home" asp-action="FAQ">FAQ</a></div>
+					<div class="element"><a class="link" asp-controller="Home" asp-action="Policy">Privacy and Return Policies</a></div>
+				</div>
+				<div class="element check-container">
+					<script>
+						var other = 'mobile-list';
+					</script>
+					<div class="check" onclick="var intermediary = document.getElementById('mobile-list').classList.toString();
+						document.getElementById('mobile-list').classList = other;
+						other = intermediary;
+					">
+						<label class="toggle-button">&#9776;</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="mobile-list hidden" id="mobile-list">
+				<div class="element-container">
+					<a class="element" href="/">
+						<div class="link">Home</div>
+					</a>
+					<a class="element" href="/catalog/">
+						<div class="link">Catalog</div>
+					</a>
+					<a class="element" href="/purchase-requirements/">
+						<div class="link">Purchase Requirements</div>
+					</a>
+					<a class="element" href="/contactus/">
+						<div class="link">Contact Us</div>
+					</a>
+					<a class="element" href="/faq/">
+						<div class="link">FAQ</div>
+					</a>
+					<a class="element" href="/policy/">
+						<div class="link">Privacy and Return Policies</div>
+					</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="dev-notice">
+			<img src="/assets/alert.webp" style="height: 50px;width: auto;" alt />
+			<div class="content">
+				<p>
+					<span>WARNING!</span> THIS IS A <span>DEVELOPMENT SITE</span>, PRODUCT LISTING ARE <span>
+						NOT
+						ACCURATE
+					</span>. DO NOT
+					CONTACT US REGARDING ANY INFORMATION ON THIS SITE. WE WILL RESUME BUISNESS ONCE THE OWNER FINALLY
+					RETIRES HIS DAY JOB (MAYBE A YEAR OR TWO).
+				</p>
+			</div>
+			<img src="/assets/alert.webp" style="height: 50px;width: auto;" alt />
+		</div>
+
+		<div class="main">
+			<div class="page-content">
+				@RenderBody()
+			</div>
+
+			<div class="page-seperator"></div>
+
+			<div class="footer">
+				<div class="description">
+				</div>
+				<div class="contact-container">
+					<div class="address">
+						<p>Moore's C&R</p>
+						<p>Address line 1</p>
+						<p>Address line 2</p>
+						<p>US of A</p>
+					</div>
+					<div class="phone">
+						<p>Home: <a href="tel:1234567890" style="color:red">(123) 456-7890</a></p>
+						<p>Office: <a href="tel:1234567890" style="color:red">(123) 456-7890</a></p>
+						<p>E-Mail: <a href="mailto:sales@moorescnr.com" style="color:red">sales@moorescnr.com</a></p>
+						<p>Fax: Use e-mail instead</p>
+					</div>
+				</div>
+
+				<a href="https://membership.nrahq.org/forms/signup.asp">
+					<img src="/assets/joinnra.jpg" style="width: 100%; height: auto;"
+						 alt="Insure your gun rights, Join the NRA.">
+				</a>
+
+				<div class="legals">
+					<div class="item">
+						<p><a href="https://orteil.dashnet.org/cookieclicker/">Manage Cookies</a></p>
+					</div>
+					<div class="item">
+						<p>
+							<a href="https://www.priv.gc.ca/en/privacy-topics/surveillance/">
+								<!--stupid privacy choices image, i think it was made by ca gov so no copyright-->
+								<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 14"
+									 xml:space="preserve" height="16" width="43">
+								<title>Your Privacy Choices Opt-Out Icon</title>
+								<path d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
+									  style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"></path>
+								<path d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
+									  style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"></path>
+								<path d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
+									  style="fill:#fff"></path>
+								<path d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
+									  style="fill:#06f"></path>
+								</svg>
+								Your Privacy Choices
+							</a>
+						</p>
+					</div>
+					<div class="item">
+						<p><a href="https://www.duolingo.com/course/en/en/Learn-English">Language (English)</a></p>
+					</div>
+				</div>
+
+				<div class="copyright">
+					<p>Moore's C&R is a registered trademark.</p>
+					<p>
+						All site content is held under exclusive copyright, protected by Uncle Sam. Violaters will be
+						prosecuted to the fullest
+						extent of the law.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

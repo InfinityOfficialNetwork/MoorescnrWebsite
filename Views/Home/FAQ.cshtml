@@ -1,0 +1,132 @@
+﻿@{
+	ViewData["Title"] = "Frequently Asked Questions";
+}
+
+<style>
+    .state-table {
+    }
+
+    .state-table table tbody tr td .state-name {
+        color: red;
+        font-size: 32px;
+        text-shadow: 2px 2px 4px black, 2px 2px 10px black, 2px 2px 20px black, 25px 2px 10px black, 2px 2px 4px black, 2px 2px 10px black, 2px 2px 20px black, 25px 2px 10px black;
+    }
+
+    .state-table table tbody tr td .state-restriction {
+        margin: 10px;
+        font-size: 24px;
+    }
+
+
+
+    .page-header {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    div.table-container.state-restrictions {
+        max-width: 1200px;
+    }
+
+        div.table-container.state-restrictions div.table {
+            grid-template-columns: 1fr 1fr;
+        }
+
+            div.table-container.state-restrictions div.table div.row {
+            }
+
+                div.table-container.state-restrictions div.table div.row div.element {
+                }
+
+                    div.table-container.state-restrictions div.table div.row div.element:nth-child(odd) {
+                        color: yellow;
+                        font-size: 32px;
+                        text-shadow: 2px 2px 4px black, 2px 2px 10px black, 2px 2px 20px black, 25px 2px 10px black, 2px 2px 4px black, 2px 2px 10px black, 2px 2px 20px black, 25px 2px 10px black;
+                    }
+
+                    div.table-container.state-restrictions div.table div.row div.element:nth-child(even) {
+                        margin: 10px;
+                        font-size: 24px;
+                    }
+
+    .catalog {
+        display: flex;
+        flex-direction: column;
+        max-width: 1200px;
+        font-size: 32px;
+        line-height: 1.5em;
+    }
+</style>
+
+<div class="page-header">
+    <div class="title">
+        <p>Frequently Asked Questions</p>
+    </div>
+
+</div>
+
+<div class="text-l">
+    <p>
+        Fill out our order form and fax or mail it in. When we receive your order we will contact you
+        prior to charging your credit card to confirm payment details. The shipping address should be
+        your local FFL dealer (for 01 items) or the address on your C&R (03 FFL) dealer license.
+    </p>
+    <p>
+        Once we confirm we have the item in stock, your payment, and proper shipping information your
+        order will be shipped promptly. Turnaround time is usually 24 to 72 hours (BECAUSE OF HIGH
+        DEMAND SOME ITEMS MAY TAKE UP TO SIX WEEKS). We will keep FFL information on file till the
+        expiration date. This will make re-ordering easy.
+
+
+    </p>
+</div>
+
+
+<div class="table-container state-restrictions">
+    <div class="table">
+        <div class="row">
+            <div class="element">
+                <p>My credit card was charged, but I've not gotten the tracking information.</p>
+            </div>
+            <div class="element">
+                <p>
+                    Sometimes FedEx or USPS don't send an email for whatever reason. If you have any
+                    questions don't hesitate to ask and we will manually send you the tracking
+                    information. Also please check your SPAM filter, it may have been stuck there.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="element">
+                <p>I don't know what a C&R is, can I still have a firearm shipped to my home?</p>
+            </div>
+            <div class="element">
+                <p>
+                    No, if you do not possess a Curio and Relic License, you must have your purchase
+                    shipped to an FFL for transfer.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="element">
+                <p>
+                    The firearm I want to purchase was manufactured prior to 1898, do I still need to go
+                    thru an FFL?
+                </p>
+            </div>
+            <div class="element">
+                <p>
+                    No, anything manufactured prior to 1895 is not considered a firearm by the ATF.
+                    However, we do require a valid copy of your driver's license along with a notarized
+                    affidavit stating that you are under no restrictions to own or possess a firearm in
+                    the location where you reside.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+</div>
