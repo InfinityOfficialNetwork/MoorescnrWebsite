@@ -1,0 +1,72 @@
+﻿@page
+@model MoorescnrWebsite.Pages.NotFoundModel
+@{
+	ViewData["NoPlayBG"] = new object();
+}
+
+<style>
+    .error-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 1rem 12rem;
+    }
+
+        .error-container .page-header {
+            justify-self: center;
+        }
+
+        .error-container .stumble-joe {
+            border-radius: 50%;
+            overflow: hidden;
+            max-width: 25em;
+            max-height: 25em;
+            aspect-ratio: 1;
+        }
+</style>
+
+<audio id="JoeGaff" autoplay loop>
+	<source src="/assets/joe-gaff.mp3" type="audio/mpeg">
+</audio>
+<script>
+	const music = document.getElementById("JoeGaff");
+	const add_listners = (i) => {
+		document.addEventListener(i, function () {
+			setTimeout(() => { document.getElementById("JoeGaff").play().catch(() => { add_listners(i) }); }, 50);
+		}, { once: true });//so it wont spam
+	}
+
+	//because browsers are dumb, they block autoplay music unless a user interacts with the page
+	//but any interaction counts, even moving the mouse after the page is loaded...
+	['scroll', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'abort',
+		'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload',
+		'blur', 'canplay', 'canplaythrough', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag',
+		'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'durationchange', 'ended', 'error',
+		'focus', 'focusin', 'focusout', 'fullscreenchange', 'fullscreenerror', 'hashchange', 'input', 'invalid',
+		'keydown', 'keypress', 'keyup', 'load', 'loadeddata', 'loadedmetadata', 'loadstart', 'message', 'mousedown', 'offline', 'online',
+		'open', 'pagehide', 'pageshow', 'paste', 'pause', 'play', 'playing', 'popstate', 'progress', 'ratechange',
+		'resize', 'reset', 'search', 'seeked', 'seeking', 'select', 'show', 'stalled', 'storage', 'submit',
+		'suspend', 'timeupdate', 'toggle', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitionend',
+		'volumechange', 'waiting', 'wheel'].forEach(add_listners);
+</script>
+
+<div class="error-container">
+	<div class="information">
+		<div class="title">
+			<p>404</p>
+		</div>
+		<div class="subtitle">
+			<p>It appears you made a mis-step.</p>
+		</div>
+	</div>
+	<div class="stumble-joe">
+		<video muted autoplay loop style="object-fit: cover; height: 100%; width: 100%;">
+			<source src="/assets/stumble-joe.mp4">
+		</video>
+	</div>
+</div>

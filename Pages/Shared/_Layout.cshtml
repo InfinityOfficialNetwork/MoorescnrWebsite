@@ -1,45 +1,50 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, MoorescnrWebsite.TagHelpers
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>@ViewData["Title"]</title>
-	<link rel="stylesheet" type="text/css" href="~/css/global.css">
+	@* <link rel="stylesheet" type="text/css" href="~/css/global.css"> *@
+	<include tag="style" src="MoorescnrWebsite.Pages.Shared._Layout.cshtml.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta charset="UTF-8">
 	<meta name="description"
-		  content="Moore's C&R - We are a Federally Licensed Firearm Dealer Dedicated to selling only the Finest Firearms available to the consumer.">
+	content="Moore's C&R - We are a Federally Licensed Firearm Dealer Dedicated to selling only the Finest Firearms available to the consumer.">
 	<meta name="keywords"
-		  content="firearms, guns, C&R firearms, collectible guns, AK-47, Zastava, Smith & Wesson, gun accessories, historical firearms, licensed firearm dealer, best gun deals">
+	content="firearms, guns, C&R firearms, collectible guns, AK-47, Zastava, Smith & Wesson, gun accessories, historical firearms, licensed firearm dealer, best gun deals">
 	<meta name="author" content="Moore's C&R">
 </head>
 
 <body>
 	<div class="root">
 		<div class="nav">
-			<!--the audio was made in the 30's, so no more copyright-->
-			<audio id="GodBlessAmerica" autoplay loop>
-				<source src="/assets/God_bless_America.mp3" type="audio/mpeg">
-			</audio>
-			<script>
-				const music = document.getElementById("GodBlessAmerica");
-				const add_listners = (i) => {
-					document.addEventListener(i, function () {
-						setTimeout(() => { document.getElementById("GodBlessAmerica").play().catch(() => { add_listners(i) }); }, 50);
-					}, { once: true });//so it wont spam
-				}
+			@if (ViewData["NoPlayBG"] is null)
+			{
+								<!--the audio was made in the 30's, so no more copyright-->
+				<audio id="GodBlessAmerica" autoplay loop>
+					<source src="/assets/God_bless_America.mp3" type="audio/mpeg">
+				</audio>
+				<script>
+					const music = document.getElementById("GodBlessAmerica");
+					const add_listners = (i) => {
+						document.addEventListener(i, function () {
+							setTimeout(() => { document.getElementById("GodBlessAmerica").play().catch(() => { add_listners(i) }); }, 50);
+						}, { once: true });//so it wont spam
+					}
 
-				//because browsers are dumb, they block autoplay music unless a user interacts with the page
-				//but any interaction counts, even moving the mouse after the page is loaded...
-				['scroll', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'abort',
-					'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload',
-					'blur', 'canplay', 'canplaythrough', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag',
-					'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'durationchange', 'ended', 'error',
-					'focus', 'focusin', 'focusout', 'fullscreenchange', 'fullscreenerror', 'hashchange', 'input', 'invalid',
-					'keydown', 'keypress', 'keyup', 'load', 'loadeddata', 'loadedmetadata', 'loadstart', 'message', 'mousedown', 'offline', 'online',
-					'open', 'pagehide', 'pageshow', 'paste', 'pause', 'play', 'playing', 'popstate', 'progress', 'ratechange',
-					'resize', 'reset', 'search', 'seeked', 'seeking', 'select', 'show', 'stalled', 'storage', 'submit',
-					'suspend', 'timeupdate', 'toggle', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitionend',
-					'volumechange', 'waiting', 'wheel'].forEach(add_listners);
-			</script>
+					//because browsers are dumb, they block autoplay music unless a user interacts with the page
+					//but any interaction counts, even moving the mouse after the page is loaded...
+					['scroll', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseout', 'mouseup', 'mousewheel', 'abort',
+						'afterprint', 'animationend', 'animationiteration', 'animationstart', 'beforeprint', 'beforeunload',
+						'blur', 'canplay', 'canplaythrough', 'change', 'click', 'contextmenu', 'copy', 'cut', 'dblclick', 'drag',
+						'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'durationchange', 'ended', 'error',
+						'focus', 'focusin', 'focusout', 'fullscreenchange', 'fullscreenerror', 'hashchange', 'input', 'invalid',
+						'keydown', 'keypress', 'keyup', 'load', 'loadeddata', 'loadedmetadata', 'loadstart', 'message', 'mousedown', 'offline', 'online',
+						'open', 'pagehide', 'pageshow', 'paste', 'pause', 'play', 'playing', 'popstate', 'progress', 'ratechange',
+						'resize', 'reset', 'search', 'seeked', 'seeking', 'select', 'show', 'stalled', 'storage', 'submit',
+						'suspend', 'timeupdate', 'toggle', 'touchcancel', 'touchend', 'touchmove', 'touchstart', 'transitionend',
+						'volumechange', 'waiting', 'wheel'].forEach(add_listners);
+				</script>
+			}
 			<div class="list">
 				<div class="element">
 					<img class="title" src="/assets/logo-red.svg" style="width:auto;height:100px;"
@@ -47,12 +52,12 @@
 				</div>
 				<div class="element"><span class="bar"></span></div>
 				<div class="element-container">
-					<div class="element"><a class="link" asp-controller="Home" asp-action="Index">Home</a></div>
-					<div class="element"><a class="link" asp-controller="Home" asp-action="Catalog">Catalog</a></div>
-					<div class="element"><a class="link" asp-controller="Home" asp-action="PurchaseRequirements">Purchase Requirements</a></div>
-					<div class="element"><a class="link" asp-controller="Home" asp-action="ContactUs">Contact Us</a></div>
-					<div class="element"><a class="link" asp-controller="Home" asp-action="FAQ">FAQ</a></div>
-					<div class="element"><a class="link" asp-controller="Home" asp-action="Policy">Privacy and Return Policies</a></div>
+					<div class="element"><a class="link" asp-page="/Index">Home</a></div>
+					<div class="element"><a class="link" asp-page="/Catalog">Catalog</a></div>
+					<div class="element"><a class="link" asp-page="/PurchaseRequirements">Purchase Requirements</a></div>
+					<div class="element"><a class="link" asp-page="/ContactUs">Contact Us</a></div>
+					<div class="element"><a class="link" asp-page="/FAQ">FAQ</a></div>
+					<div class="element"><a class="link" asp-page="/Policy">Privacy and Return Policies</a></div>
 				</div>
 				<div class="element check-container">
 					<script>

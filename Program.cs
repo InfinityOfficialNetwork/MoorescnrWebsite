@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.Metrics;
 using MoorescnrWebsite.Database;
 using System.IO.Compression;
+using Microsoft.AspNetCore.Identity;
+using System.Dynamic;
 
 namespace MoorescnrWebsite
 {
@@ -15,9 +17,13 @@ namespace MoorescnrWebsite
 			builder.Logging.SetMinimumLevel(LogLevel.Trace);
 
 			if (OperatingSystem.IsWindows())
-				builder.Logging.AddEventLog(o => {
-					o.LogName = "MoorescnrWebsite";
-					o.SourceName = "MoorescnrWebsite";
+				builder.Logging.AddEventLog(o =>
+				{
+					if (OperatingSystem.IsWindows())
+					{
+						o.LogName = "MoorescnrWebsite";
+						o.SourceName = "MoorescnrWebsite";
+					}
 				});
 
 			builder.Metrics.EnableMetrics(null);
@@ -25,7 +31,11 @@ namespace MoorescnrWebsite
 			builder.Services.AddHttpLogging();
 
 			// Add services to the container.
+			builder.Services.AddControllers();
 			builder.Services.AddControllersWithViews();
+			builder.Services.AddMvc();
+			builder.Services.AddRazorComponents();
+			builder.Services.AddRazorPages();
 
 			builder.Services.Configure<GzipCompressionProviderOptions>(options =>
 			{
@@ -54,18 +64,26 @@ namespace MoorescnrWebsite
 				app.UseHsts();
 			}
 
+			app.UseOutputCache();
+			app.UseResponseCaching();
 
-
+			app.MapRazorPages();
+			app.MapControllers();
 
 			app.UseRouting();
 
 			app.UseAuthorization();
 
 			app.MapStaticAssets();
-			app.MapControllerRoute(
-				name: "default",
-				pattern: "{controller=Home}/{action=Index}/{id?}")
-				.WithStaticAssets();
+			//app.MapControllerRoute(
+			//	name: "default",
+			//	pattern: "{controller=Home}/{action=Index}/{id?}")
+			//	.WithStaticAssets();
+
+			app.MapFallback(context => {
+				context.Response.Redirect("/NotFound");
+				return Task.CompletedTask;
+			});
 
 			await app.RunAsync();
 		}

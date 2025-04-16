@@ -1,8 +1,9 @@
-﻿@model CatalogViewModel
+﻿@page "{PageNumber:int?}"
+@using MoorescnrWebsite.Database
+@model CatalogModel
 
 @{
 	ViewData["Title"] = "Catalog";
-	ViewData["Page"] = Model.Page;
 }
 
 <style>
@@ -102,39 +103,36 @@
 
 
 
-<div class="page-seperator">
-</div>
-
 <div class="catalog">
 	<div class="menu">
-		@if (Model.Page > 0)
+		@if (Model.PageNumber > 0)
 		{
-			<a asp-route-page="@(Model.Page - 1)">
-				<div class="item" id="prev-page">
+			<a asp-page="/Catalog" asp-route-PageNumber="@(Model.PageNumber - 1)">
+				<div class="item">
 					Previous Page
 				</div>
 			</a>
 		}
 		else
 		{
-			<div class="item" id="prev-page">
+			<div class="item disabled">
 				Previous Page
 			</div>
 		}
 
 
 		<div class="separator"></div>
-		@if (Model.Page * CatalogViewModel.GunInfo.PageCount < Model.NumberOfGuns)
+		@if ((Model.PageNumber + 1) * GunInfo.PageCount < Model.NumberOfGuns)
 		{
-			<a asp-route-page="@(Model.Page + 1)">
-				<div class="item" id="next-page">
+			<a asp-page="/Catalog" asp-route-PageNumber="@(Model.PageNumber + 1)">
+				<div class="item">
 					Next Page
 				</div>
 			</a>
 		}
 		else
 		{
-			<div class="item" id="next-page">
+			<div class="item disabled">
 				Next Page
 			</div>
 		}
@@ -143,8 +141,8 @@
 		@foreach (var item in Model.GunInfos)
 		{
 			<div class="catalog-item">
-				<a asp-action="Item" asp-route-id="@item.Id"><h1 class="name">@item.Name</h1></a>
-				<a asp-action="Item" asp-route-id="@item.Id"><img class="image" src="~/Image/GetImage?id=@item.ImageIds[0]" /></a>
+				<a asp-page="/Item" asp-route-GunId="@item.Id"><h1 class="name">@item.Name</h1></a>
+				<a asp-page="/Item" asp-route-GunId="@item.Id"><img class="image" src="/api/Image/@item.ImageIds[0]" /></a>
 @* 				<p class="description">@item.Description</p> *@
 				@if (item.IsAvailable)
 				{
@@ -163,7 +161,7 @@
 			<div class="page-seperator"></div>
 		}
 		<p class="disclaimer">
-			The above list was fetched dynamically in @(new System.Random().Next(10, 100))ms. Not all listings may be accurate or up-to-date.
+			The above list was fetched dynamically in @(Model.TimeTook)ms. Not all listings may be accurate or up-to-date.
 			Contact us for any and all information. Purchase subject to eligibility requirements. Convicted felons,
 			criminals, crooks, robbers, commies, among others are not allowed to possess firearms. Be sure to check
 			federal, state, local, and international laws first. Licenses, permits, charters, grants, and permission
@@ -171,34 +169,34 @@
 		</p>
 	</div>
 	<div class="menu">
-		@if (Model.Page > 0)
+		@if (Model.PageNumber > 0)
 		{
-			<a asp-route-page="@(Model.Page - 1)">
-				<div class="item" id="prev-page">
+			<a asp-page="/Catalog" asp-route-PageNumber="@(Model.PageNumber - 1)">
+				<div class="item">
 					Previous Page
 				</div>
 			</a>
 		}
 		else
 		{
-			<div class="item" id="prev-page">
+			<div class="item disabled">
 				Previous Page
 			</div>
 		}
 
 
 		<div class="separator"></div>
-		@if (Model.Page * CatalogViewModel.GunInfo.PageCount < Model.NumberOfGuns)
+		@if ((Model.PageNumber + 1) * GunInfo.PageCount < Model.NumberOfGuns)
 		{
-			<a asp-route-page="@(Model.Page + 1)">
-				<div class="item" id="next-page">
+			<a asp-page="/Catalog" asp-route-PageNumber="@(Model.PageNumber + 1)">
+				<div class="item">
 					Next Page
 				</div>
 			</a>
 		}
 		else
 		{
-			<div class="item" id="next-page">
+			<div class="item disabled">
 				Next Page
 			</div>
 		}
