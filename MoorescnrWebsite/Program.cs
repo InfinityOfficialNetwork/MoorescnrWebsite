@@ -42,9 +42,9 @@ namespace MoorescnrWebsite
 				options.Level = CompressionLevel.SmallestSize;
 			});
 
-			string connectionString = builder.Configuration.GetConnectionString("DatabaseConnection") ?? throw new InvalidOperationException("ConnectionString:DatabaseConnection string missing, check config.");
+			string connectionString = "Server=localhost;Database=MoorescnrDb;Uid=root;Pwd=password";//builder.Configuration.GetConnectionString("DatabaseConnection") ?? throw new InvalidOperationException("ConnectionString:DatabaseConnection string issing, check config.");
 			builder.Services.AddDbContextFactory<CnrDbContext>(options =>
-				options.UseSqlite(connectionString)
+				options.UseMySQL(connectionString)
 				.EnableSensitiveDataLogging());
 
 			builder.Services.AddResponseCaching()
